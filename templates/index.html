@@ -29,6 +29,7 @@
 
 
     <div class="row">
+        <h1 style="margin-left: 15px;">Sonnet {{ sonnet_num }}</h1>
 
         <div class="col-md-5">
             <h3>Rhyme Scheme</h3>
@@ -41,7 +42,8 @@
 
         {% for word in line %}
 
-<div class="sonnet_line timeline0"
+<!--<div class="sonnet_line timeline0"-->
+<div
      style="display: inline-block; padding: 3px; margin: 1px; background-color: {{ word[3] }}"> {{
     word[1] }}
                 </div>
@@ -64,8 +66,9 @@
 
         {% for word in line %}
 
-<div class="sonnet_line timeline0"
-     style="display: inline-block; padding: 3px; margin: 1px; background-color: {{ word[3] }}"> {{
+<!--<div class="sonnet_line timeline0"-->
+<div
+     style="display: inline-block; padding: 3px; margin: 1px; background-color: {{ word[4] }}"> {{
     word[1] }}
                 </div>
 

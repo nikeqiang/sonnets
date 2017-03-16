@@ -1,6 +1,6 @@
 import re
 import json
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 
 with open('cmudict_abbr_js.json', 'r') as f:
@@ -8,7 +8,7 @@ with open('cmudict_abbr_js.json', 'r') as f:
 
 sonnet_text = open('pg1041.txt', encoding='utf-8').read()
 sonnets = re.split(r'\n\s+[XVCIL]+\n', sonnet_text, flags=re.X)
-sonnet_dict = {key:value for key, value in enumerate(sonnets)}
+sonnet_dict = {key:value for key, value in enumerate(sonnets) if key!=0}
 
 class Sonnet:
 	
@@ -32,7 +32,6 @@ class Sonnet:
 		self.sonnet_no_punct = sonnet_no_punct
 		
 	def get_lines(self):
-		# self.lines = [Line(l.strip()) for l in self.text.split('\n') if re.search('\w', l)]
 		self.lines_clean = [l.strip() for l in self.text.split('\n') if re.search('\w', l)]
 		self.lines = [Line(l.strip()) for l in self.sonnet_no_punct.split('\n') if re.search('\w', l)]
 		for line in self.lines[-2:]:
@@ -91,6 +90,16 @@ class Sonnet:
 			for w in rhyme[1]:
 				w[0].rhyme_num = rhyme_num
 				# print(w, w[0].rhyme_num)
+		
+		allit = sorted([x for x in self.start_dict.items() if len(set([(str(w[0]), str(w[1][0])) for w in x[1]])) > 1
+		                if x[
+			0]],
+		                key=lambda x: len(x[1]))[::-1]
+		for n, allit in enumerate(allit):
+			allit_num = n + 1
+			for w in allit[1]:
+				w[0].allit_num = allit_num
+				# print(w, w[0].rhyme_num)
 			
 	def return_word_objects(self):
 		return [[(w, w.text, w.stress_count, w.rhyme_num) for w in l.words] for l in self.lines]
@@ -106,6 +115,7 @@ class Line:
 		self.final_couplet = False
 		self.stress_pattern = [w.stresses for w in self.words]
 		self.guess_stress()
+		self.get_syl_num()
 	
 	def get_words(self):
 		self.words = [Word(w.upper()) for w in self.text.split(' ')]
@@ -120,6 +130,12 @@ class Line:
 			for w in unmatched:
 				w.stress_count = guess
 	
+	def get_syl_num(self):
+		syl_num = 1
+		for word in self.words:
+			word.syl_number = int(syl_num)
+			syl_num += word.stress_count
+	
 
 class Word:
 	
@@ -133,6 +149,8 @@ class Word:
 		self.line_start = False
 		self.line_end = False
 		self.rhyme_num = 0
+		self.allit_num = 0
+		self.syl_number = 0
 	
 	def __repr__(self):
 		return self.text
@@ -149,6 +167,7 @@ class Word:
 		except:
 			return ''
 	pass
+
 
 
 
@@ -183,12 +202,12 @@ class Word:
 # 	print(stresses)
 # 	print(len([x for y in stresses for x in y]))
 
-snt = Sonnet(103)
+
 # snt.show_rhymes_and_allit()
 # print(*snt.rhyme_dict.items(), sep='\n')
 # print(snt.sonnet_no_punct)
 # snt.label_rhymes_and_allit()
-print(snt.return_word_objects())
+# print(snt.return_word_objects())
 # print(*[x for x in snt.rhyme_dict.items() if len(x[1])>1 and x[0]], sep='\n')
 # print(*sorted([x for x in snt.rhyme_dict.items() if len(set([str(w[0]) for w in x[1]]))>1 if x[0]], key=lambda x: len(x[
 # 	                                                                                                                  1])),
@@ -211,5 +230,23 @@ print(snt.return_word_objects())
 # 		if line.final_couplet == True:
 # 			print(line.text)
 
-# wobs = [[(w, w.text, w.stress_count, w.rhyme_num) for w in l.words] for l in snt.lines]
+# wobs = [[(w, w.text, w.stress_count, w.rhyme_num, w.allit_num) for w in l.words] for l in snt.lines]
+# wobs = [[(w, w.text, w.arp_word, w.allit_num, w.syl_number) for w in l.words] for l in snt.lines]
 # print(wobs)
+
+
+# rhyme_location = Counter()
+#
+# for s, sonn in sonnet_dict.items():
+# 	print('Sonnet ', s)
+# 	snt_obj = Sonnet(s)
+# 	for n, l in enumerate(snt_obj.lines):
+# 		for w in l.words:
+# 			print(w.text, 'syle number: ',  w.syl_number)
+# 			if w.rhyme_num != 0:
+# 				rhyme_location[(n, w.syl_number)] += 1
+#
+# print(rhyme_location.items())
+# print(sorted(rhyme_location.items(), key=lambda x: x[1]))
+# print(sonnet_dict.items())
+
