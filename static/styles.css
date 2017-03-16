@@ -1,38 +1,38 @@
 
 
-.footer {
-  /*position: absolute;*/
-  /*bottom: 0;*/
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  /*height: 60px;*/
-  /*line-height: 60px; !* Vertically center the text there *!*/
-  background-color: #f5f5f5;
-}
+/*.footer {*/
+  /*!*position: absolute;*!*/
+  /*!*bottom: 0;*!*/
+  /*width: 100%;*/
+  /*!* Set the fixed height of the footer here *!*/
+  /*!*height: 60px;*!*/
+  /*!*line-height: 60px; !* Vertically center the text there *!*!*/
+  /*background-color: #f5f5f5;*/
+/*}*/
 
-.sonnet_line {
-  display: inline-block;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 2px;
-  padding-right: 0;
-  margin-left: 0;
-  margin-right: 0;
-  font-size: 2%;
-  text-align: left; }
+/*.sonnet_line {*/
+  /*display: inline-block;*/
+  /*padding-top: 12px;*/
+  /*padding-bottom: 12px;*/
+  /*padding-left: 2px;*/
+  /*padding-right: 0;*/
+  /*margin-left: 0;*/
+  /*margin-right: 0;*/
+  /*font-size: 2%;*/
+  /*text-align: left; }*/
 
-.timeline3 {
-  background-color: rgba(255, 151, 71, 0.29);
-}
-.timeline2 {
-  background-color: rgba(119, 72, 64, 0.21);
-}
-.timeline1 {
-  background-color: rgba(255, 232, 95, 0.41);
-}
+/*.timeline3 {*/
+  /*background-color: rgba(255, 151, 71, 0.29);*/
+/*}*/
+/*.timeline2 {*/
+  /*background-color: rgba(119, 72, 64, 0.21);*/
+/*}*/
+/*.timeline1 {*/
+  /*background-color: rgba(255, 232, 95, 0.41);*/
+/*}*/
 
-.timeline0 {
-  background-color: rgba(67, 146, 255, 0.27);
-}
+/*.timeline0 {*/
+  /*background-color: rgba(67, 146, 255, 0.27);*/
+/*}*/
 
 

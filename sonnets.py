@@ -37,45 +37,7 @@ class Sonnet:
 		for line in self.lines[-2:]:
 			line.final_couplet = True
 	
-	# def get_words(self):
-	# 	self.words = [[w for w in l.text.split(' ')] for l in self.lines]
-	# 	self.words_clean = [[Word(w.upper()) for w in l.text.split(' ')] for l in self.lines_clean]
-		
-	# def get_arp(self):
-	# 	self.arp = [[cmudict[w] if w in cmudict else '**' + w for w in l] for l in self.words_clean]
-	# 	print(self.arp)
-		
-	# def get_stresses(self, arp_word):
-	# 	return [int(s) for s in re.findall('\d', arp_word)]
-	
-	# def get_stress_list(self):
-	# 	self.stresses = [[self.get_stresses(w) for w in l] for l in self.arp]
-	
-	# def end_rhyme(self, arp_word):
-	# 	try:
-	# 		return re.search(r'\w+\d\D+$|\w+\d$', arp_word).group()
-	# 	except:
-	# 		return ''
-	#
-	# def start_sound(self, arp_word):
-	# 	try:
-	# 		return arp_word.split(' ')[0]
-	# 	except:
-	# 		return ''
-		
-	# def show_rhymes_and_allit(self):
-	# 	for i in range(len(self.words)):
-	# 		words = self.words[i]
-	# 		for j in range(len(self.words[i])):
-	# 			word = self.words[i][j]
-	# 			arp = self.arp[i][j]
-	# 			rhyme = self.end_rhyme(arp)
-	# 			start = self.start_sound(arp)
-	# 			self.rhyme_dict[rhyme].append([word, (i, j)])
-	# 			self.start_dict[start].append([word, (i, j)])
-	# 	print(*self.rhyme_dict.items(), sep='\n')
-	# 	print(*self.start_dict.items(), sep='\n')
-		
+
 	def show_rhymes_and_allit(self):
 		for i, l in enumerate(self.lines):
 			for j, w in enumerate(l.words):
@@ -170,69 +132,6 @@ class Word:
 
 
 
-
-	
-	
-	
-		
-		
-# n = 102
-# print(sonnet_dict[n])
-
-# sonnet = sonnet_dict[n]
-#
-# sonnet_no_punct = re.sub(r" '|'$", '', sonnet)
-# sonnet_no_punct = re.sub(r"[,\.;!:?]", '', sonnet_no_punct)
-# sonnet_no_punct = re.sub(r"'st", '', sonnet_no_punct)
-# sonnet_no_punct = re.sub(r"'d", 'ed', sonnet_no_punct)
-#
-# lines = [l.strip() for l in sonnet_no_punct.split('\n') if re.search('\w',l)]
-#
-# words = [[w.upper() for w in l.split(' ')] for l in lines]
-#
-# arp = [[cmudict[w] if w in cmudict else '**'+w for w in l] for l in words]
-#
-# def stress_list_int(arp_word_string):
-# 	'''takes arp_word as single string and returns list of stresses'''
-# 	return [int(s) for s in re.findall('\d', arp_word_string)]
-#
-# for l in arp:
-# 	print(l)
-# 	stresses = [stress_list_int(w) for w in l]
-# 	print(stresses)
-# 	print(len([x for y in stresses for x in y]))
-
-
-# snt.show_rhymes_and_allit()
-# print(*snt.rhyme_dict.items(), sep='\n')
-# print(snt.sonnet_no_punct)
-# snt.label_rhymes_and_allit()
-# print(snt.return_word_objects())
-# print(*[x for x in snt.rhyme_dict.items() if len(x[1])>1 and x[0]], sep='\n')
-# print(*sorted([x for x in snt.rhyme_dict.items() if len(set([str(w[0]) for w in x[1]]))>1 if x[0]], key=lambda x: len(x[
-# 	                                                                                                                  1])),
-#       sep='\n')
-
-# print(snt.sonnet_no_punct)
-# for x in snt.rhyme_dict.items():
-# 	print([w[0] for w in x[1]], set([str(w[0]) for w in x[1]]))
-# print(*snt.stresses, sep='\n')
-# print(cmudict['HAPPY'])
-# print(*snt.arp, sep='\n')
-# print(snt.get_end_rhymes())
-# print(list(zip(snt.arp, snt.words)))
-# snt.show_rhymes_and_allit()
-# print([w.arp_word for l in snt.lines for w in l.words])
-# for snt_num in sonnet_dict:
-# 	Snt = Sonnet(snt_num)
-# 	for line in Snt.lines:
-# 		print(line.stress_pattern)
-# 		if line.final_couplet == True:
-# 			print(line.text)
-
-# wobs = [[(w, w.text, w.stress_count, w.rhyme_num, w.allit_num) for w in l.words] for l in snt.lines]
-# wobs = [[(w, w.text, w.arp_word, w.allit_num, w.syl_number) for w in l.words] for l in snt.lines]
-# print(wobs)
 
 
 # rhyme_location = Counter()
